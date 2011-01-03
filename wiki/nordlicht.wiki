@@ -2,6 +2,6 @@
 
 = Introduction =
 
-Nordlicht is the German word for Northern Light, as in the Aura Borealis.
+Nordlicht is a new front end for the AWStats.  I grew tired of seeing the ancient interface of AWstats, while the rest of the web evoloved, and embraced new technologies such as HTML5, CSS2 & CSS3, and new charting abilities.
 
-Nordlicht, in this sense, is the referring to the enhanced view created for AW stats.
+So, I went about redesigning the front end, and this is what I came up with.
