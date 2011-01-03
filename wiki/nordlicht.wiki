@@ -1,7 +1,18 @@
 #summary what is nordlicht
+#labels Featured
 
 = Introduction =
 
 Nordlicht is a new front end for the AWStats.  I grew tired of seeing the ancient interface of AWstats, while the rest of the web evoloved, and embraced new technologies such as HTML5, CSS2 & CSS3, and new charting abilities.
 
 So, I went about redesigning the front end, and this is what I came up with.
+
+= How does it work? =
+
+With lots, and lots of PHP.
+
+Well, that's the unfortunate outcome of a single person working on this in their spare time.  There's lots that is redundant, and duplicated, and depreciated in the code that's up there right now. 
+
+But I know all about that, so fear not, it's all in the works to be made better, you can follow the release cycle, and bug fixes, and updates on the nordlicht project page on Google Code.
+
+The back end is all PHP, but still uses AWStats to analyze the Apache server logs, but that's all that AWStats does, create the output log file, nordlicht goes through that log file and puts it in a nice front end design.
