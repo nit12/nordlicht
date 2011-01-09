@@ -22,6 +22,7 @@ if(file_exists($stsF)):
 	require('funn/metadata.php');
 	require('funn/data.php');
 	require('funn/chartmeta.php');
+	require('tableArgs.php');
 	$stsList = fileList($stsP);
 else:
 	$sts = false;

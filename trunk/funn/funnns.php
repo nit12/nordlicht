@@ -178,8 +178,10 @@ function generalSts($sts){
 	return $gen;
 }
 
-
-/*headerRow()	- prints out the header row for the tables - used inside tableMeta(), and todayStats() function
+/*############
+@2 - Tables
+############*/
+/*Function - headerRow()	- prints out the header row for the tables - used inside tableMeta(), and todayStats() function
 	$meta		- the metadata array for that section
 	
 	return		= header row in HTML table format
@@ -191,129 +193,89 @@ function headerRow($meta){
 	endforeach;
 	echo "\t</tr>\n";
 }
-/*tableMeta		- makes a table out of the data from a section of the stats file
-	$section	- the section of the stats file
-	$limit		- (optional) - limits the table to only a certin ammount of rows
-	
-	return		= printed out HTML table
+
+/*Function - drawTable()	= draws a table for the section of the array  Takes an assocative array of arguments
+	'section' 	= > section of the stats array file	(Required)
+	'meta'		= > meta data for headers to draw	(Required)
+	'limit'		= > the limit to print out
+	'offSet'	= > when to offset the begining of the table - for Dual Tables ex: Hours 0-11, and Hours 12-23
+	'sort'		= > how to sort the table
+	'tableID'	= > id to give the <table> element (table[random 5-500] default)
+	'cc'		= > array of information relative to one of the sections to display ex: turning US into United States
 */
-function tableMeta($section,$meta,$limit=false,$cc='null'){
-	$i = 0;
+function drawTable($args){
+	//set the variables
+	$section = $args['section'];
 	$j = 0;
-	echo "\n<table>\n";
-	headerRow($meta);
-	$secL = count($section[$meta[1]]);
 	
-	if($limit != false):
-		$secL = $limit;
+	$limit = false;
+	if($args['limit']) :
+		$limit = $args['limit'];
 	endif;
-	while($i < $secL):
-		echo "\t<tr>\n";
-		foreach($meta as $s):
-			if($s == 'Bandwidth'):
-				echo "\t\t<td>".byteSize($section[$s][$i])."</td>\n";
-			elseif(strpos(strtolower($s),'date') || strpos(strtolower($s),'visit')):
-				echo "\t\t<td>".dayMake($section[$s][$i])."</td>\n";
-			elseif($s == 'Domain'):
-				$c = $section[$s][$i];
-				echo "\t\t<td><img src=\"funn/img/png/".$c.".png\"alt=\"".$c."\"/>".$cc[strtoupper($c)]."</td>\n";
-			elseif($s == 'Browser'):
-				$cs = $section[$s][$i];
-				echo "\t\t<td><img src=\"funn/img/browsers/".strtolower(str_replace(' ','-',$cs)).".png\"alt=\"".$cs."\"/>".$cs."</td>\n";
-			else:
-				echo "\t\t<td>".$section[$s][$i]."</td>\n";
-			endif;
-		endforeach;
-		echo "\t</tr>\n";
-		$i++;
-	endwhile;
-	echo "</table>\n";
-}
-/*tableMeta2		- makes a table out of the data from a section of the stats file
-	$section	- the section of the stats file
-	$limit		- (optional) - limits the table to only a certin ammount of rows
 	
-	return		= printed out HTML table
-*/
-function tableMeta2($section,$meta,$limit=false,$start=false){
-	$i = 0;
-	$j = 0;
-	echo "\n<table>\n";
-	headerRow($meta);
-	$secL = count($section[$meta[1]]);
+	$offSet = 0;
+	if($args['offSet']):
+		$offSet = $j = $args['offSet'];
+	endif;
 	
-	if($limit != false && $limit < $secL):
-		$secL = $limit;
+	if($args['cc']):
+		$cc = $args['cc'];
 	endif;
-	if($start != false && $start < $secL):
-		$i = $start;
-	endif;
-	while($i < $secL):
-		echo "\t<tr>\n";
-		foreach($meta as $s):
-			if($s == 'Bandwidth'):
-				echo "\t\t<td>".byteSize($section[$s][$i])."</td>\n";
-			elseif($s == 'Date'):
-				echo "\t\t<td>".dayMake($section[$s][$i])."</td>\n";
-			else:
-				echo "\t\t<td>".$section[$s][$i]."</td>\n";
-			endif;
-		endforeach;
-		echo "\t</tr>\n";
-		$i++;
-	endwhile;
-	echo "</table>\n";
-}
-/*sortTable()	- prints the table sorted by a section
-	$section	- stats file array section
-	$meta		- columns to print in the table
-	$limit		- (false) limit number of rows of the table
-	$sort		- (false) column to sort by
-	$cc			- (false) country code array
-	
-	return		= HTML table
-*/
-function sortTable($section,$meta,$limit=false,$sort=false,$cc=false,$baseURL=false){
-	$j = 0;
-	$colLim = count($section['Hits']);
-	if($limit != false):
-		$colLim = $limit;
-	endif;
-	if($sort != false):
+
+	$sort = 'Bandwidth';
+	if($args['sort']) :
+		$sort = $args['sort'];
 		arsort($section[$sort]);
 	endif;
-	echo "<table>\n";
-	headerRow($meta);
+	
+	$tableID = 'table'.rand(5,500);
+	if($args['tableID']):
+		$tableID = $args['tableID'];
+	endif;
+	
+	//begin to draw the table
+	echo "<table id=\"".$tableID."\">\n";
+	headerRow($args['meta']);	//the header row
+	
 	foreach($section[$sort] as $id=>$v):
-		if($j >= $colLim):
-			break;
-		endif;
-		echo "\t<tr>\n";
-		foreach($meta as $h):
-			$vl = $section[$h][$id];
-			if($h == 'Files type'):
-				$vl = '<img src="funn/img/files32/'.$vl.'.png" alt="file icon" />'.$vl;
-			elseif($h == 'Bandwidth'):
-				$vl = byteSize($vl);
-			elseif($h == 'Hits'):
-				$vl = number_format($vl);
-			elseif($h == 'Domain'):
-				$vl = '<img src="funn/img/country/'.$vl.'.png" alt="'.$vl.'"/>'.$cc[strtoupper($vl)];
-			elseif($h == 'Last visit date' || $h == 'Last visit'):
-				$vl = dayMake($vl);
-			elseif($h == 'URL'):
-				$va = '<a href="'.$baseURL.'/'.$vl.'">'.$vl.'</a>';
-				$vl = $va;
-			elseif($h == 'Search keyphrases'):
-				$vl = str_replace('+',' ',$vl);
+		if($id >= $offSet):
+			if($j >= $limit && $limit != false):
+				break;	//limit reached, stop the loop
 			endif;
-			echo "\t\t<td>".$vl."</td>\n";
-		endforeach;
-		$j++;
-		echo "\t</tr>\n";
-	endforeach;
+			echo "\t\t<tr>\n";
+			foreach($args['meta'] as $h):
+				$vl = $section[$h][$id];
+				if($h == 'Files type'):
+					$vl = '<img src="funn/img/files32/'.$vl.'.png" alt="file icon" width="32px" height="32px;" />'.$vl;
+				elseif($h == 'Bandwidth'):
+					$vl = byteSize($vl);
+				elseif($h == 'Hits' || $h == 'Pages'):
+					$vl = number_format($vl);
+				elseif($h == 'Domain'):
+					$vl = '<img src="funn/img/country/'.$vl.'.png" alt="'.$vl.'" width="16px" height="11px"/>'.str_replace('+',' ',$cc[strtoupper($vl)]);
+				elseif($h == 'Last visit date' || $h == 'Last visit' || $h == 'Date'):
+					$vl = dayMake($vl);
+				elseif($h == 'URL'):
+					$va = '<a href="http://'.$args['baseURL'].'/'.$vl.'">'.$vl.'</a>';
+					$vl = $va;
+				elseif($h == 'Search keyphrases'):
+					$vl = str_replace('+',' ',$vl);
+				elseif($h == 'External page referers'):
+					$vl = '<a href="'.$vl.'" title="visit site">'.$vl.'</a>';
+				elseif($h == 'Type'):
+					$vl = $args['error'][$section['Errors'][$id]];
+				elseif($h == 'Browser'):
+					$vl = "\t\t<img src=\"funn/img/browsers/".strtolower(str_replace(' ','-',$vl)).".png\"alt=\"".$vl."\"/>".$vl."\n";
+				endif;	//ends meta type if
+				echo "\t\t\t<td>".$vl."</td>\n";
+			endforeach;	//ends meta foreach
+			echo "\t\t</tr>\n";
+			$j++;
+		endif;	//ends offset if
+	endforeach;	//ends section foreach
 	echo "</table>\n";
 }
+
 
 /*findMax()		- finds the max value for a section of the stats file array
 	$section	- section of the stats file array
@@ -519,59 +481,7 @@ function osCombine($type,$hits,$total,$atom){
 	
 	return $atom;
 }
-/*OOP table maker?
-*/
-function robotTable2($args){
-	$section = $args['section'];
-	$j = 0;
-	$limit = false;
-	if($args['limit']) :
-		$limit = $args['limit'];
-	endif;
-	if($args['cc']):
-		$cc = $args['cc'];
-	endif;
-	$sort = false;
-	if($args['sort']) :
-		$sort = $args['sort'];
-		arsort($section[$sort]);
-	endif;
-	echo "<table>\n";
-	headerRow($args['meta']);
-	foreach($section[$sort] as $id=>$v):
-		if($j >= $limit && $limit != false):
-			break;
-		endif;
-		echo "\t\t<tr>\n";
-		foreach($args['meta'] as $h):
-			$vl = $section[$h][$id];
-			if($h == 'Files type'):
-				$vl = '<img src="funn/img/files32/'.$vl.'.png" alt="file icon" width="32px" height="32px;" />'.$vl;
-			elseif($h == 'Bandwidth'):
-				$vl = byteSize($vl);
-			elseif($h == 'Hits' || $h == 'Pages'):
-				$vl = number_format($vl);
-			elseif($h == 'Domain'):
-				$vl = '<img src="funn/img/country/'.$vl.'.png" alt="'.$vl.'" width="16px" height="11px"/>'.$cc[strtoupper($vl)];
-			elseif($h == 'Last visit date' || $h == 'Last visit'):
-				$vl = dayMake($vl);
-			elseif($h == 'URL'):
-				$va = '<a href="http://'.$args['baseURL'].'/'.$vl.'">'.$vl.'</a>';
-				$vl = $va;
-			elseif($h == 'Search keyphrases'):
-				$vl = str_replace('+',' ',$vl);
-			elseif($h == 'External page referers'):
-				$vl = '<a href="'.$vl.'" title="visit site">'.$vl.'</a>';
-			elseif($h == 'Type'):
-				$vl = $args['error'][$section['Errors'][$id]];
-			endif;
-			echo "\t\t\t<td>".$vl."</td>\n";
-		endforeach;
-		echo "\t\t</tr>\n";
-		$j++;
-	endforeach;
-	echo "</table>\n";
-}
+
 
 /*weekDay()*/
 function weekDay($section){
