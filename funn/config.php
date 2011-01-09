@@ -7,8 +7,8 @@ if($dayR==''):
 	$dayR = date('mY');
 endif;
 
-/*AWE stats version number*/
-$aweStats = 'AWE stats v. 0.5';
+/*nordlich version number*/
+$nordlich  = '0.2';
 
 /*Abslolute server path to AW stats stats files*/
 $stsP = '/var/lib/awstats/';
