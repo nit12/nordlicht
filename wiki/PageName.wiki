@@ -1,0 +1,14 @@
+#summary changelog
+#labels Featured,Phase-Implementation
+
+=Changelog=
+
+==nordlicht v0.2==
+===Jan 08, 2011===
+  * Made all tables made with the drawTable function that takes an associative array of values
+  * Removed old code from funnns.php
+  * Updated footer to include correct links
+
+==nordlicht v0.1==
+===Jan 01, 2011===
+  * Inital release
