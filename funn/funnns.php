@@ -246,7 +246,7 @@ function drawTable($args){
 			foreach($args['meta'] as $h):
 				$vl = $section[$h][$id];
 				if($h == 'Files type'):
-					$vl = '<img src="funn/img/files32/'.$vl.'.png" alt="file icon" width="32px" height="32px;" />'.$vl;
+					$vl = '<img src="funn/img/files/file_'.$vl.'.png" alt="file icon" width="24px" height="24px;" />'.$vl;
 				elseif($h == 'Bandwidth'):
 					$vl = byteSize($vl);
 				elseif($h == 'Hits' || $h == 'Pages'):
