@@ -16,9 +16,26 @@ Instlation:
 			3.3.1 ?stats=YOUR.DOMAIN.COM&time=MMYYYY
 	4. Enjoy
 
+=Resources:==
+nordlicht comes with the following resources that have been made avaliable under the following licenses
 
+==jQuery Plugins:==
+  * Colorbox 1.3.15 - under the MIT license
+  * jQuery ScrollTo - Dual licensed under MIT and GPL
+  * Date picker for jQuery v4.0.4 - Dual licensed under MIT and GPL
+  * MSDropDown v2.36 - Dual licensed under MIT and GPL
+
+==Images and Icons:==
+  * The Ultimate Free Web Designer’s Icon Set (750 icons, 48x48px) - http://www.smashingmagazine.com/2010/04/15/the-ultimate-free-web-designer-s-icon-set-750-icons-incl-psd-sources/ 
+  * FamFamFam Flag icons - http://www.famfamfam.com/lab/icons/flags/
 
 =Changelog=
+
+==nordlicht v0.2.1==
+===Jan 13, 2011===
+  * added licenses and readmes for jQuery plugins
+  * updated the file type icons
+  * updated the "other" browser icon
 
 ==nordlicht v0.2==
 ===Jan 08, 2011===
