@@ -244,66 +244,77 @@ nav:hover {
 .hour01 {
 	-webkit-transform:rotate(30deg);
 	-moz-transform:rotate(30deg);
+	-o-transform:rotate(30deg);
 	transform:rotate(30deg);
 	margin:-9px 18px;
 }
 .hour02 {
 	-webkit-transform:rotate(60deg);
 	-moz-transform:rotate(60deg);
+	-o-transform:rotate(60deg);
 	transform:rotate(60deg);
 	margin:-7px 19px;
 }
 .hour03 {
 	-webkit-transform:rotate(90deg);
 	-moz-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
 	transform:rotate(90deg);
 	margin:-3px 21px;
 }
 .hour04 {
 	-webkit-transform:rotate(120deg);
 	-moz-transform:rotate(120deg);
+	-o-transform:rotate(120deg);
 	transform:rotate(120deg);
 	margin:0px 20px;
 }
 .hour05 {
 	-webkit-transform:rotate(150deg);
 	-moz-transform:rotate(150deg);
+	-o-transform:rotate(150deg);
 	transform:rotate(150deg);
 	margin:2px 18px;
 }
 .hour06 {
 	-webkit-transform:rotate(180deg);
 	-moz-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
 	transform:rotate(180deg);
 	margin:3px auto;
 }
 .hour07 {
 	-webkit-transform:rotate(210deg);
 	-moz-transform:rotate(210deg);
+	-o-transform:rotate(210deg);
 	transform:rotate(210deg);
 	margin:1px 12px;
 }
 .hour08 {
 	-webkit-transform:rotate(240deg);
 	-moz-transform: rotate(240deg);
+	-o-transform: rotate(240deg);
 	transform: rotate(240deg);
 	margin:-1px 9px;
 }
 .hour09 {
 	-webkit-transform:rotate(270deg);
 	-moz-transform:rotate(270deg);
+	-o-transform:rotate(270deg);
 	transform:rotate(270deg);
 	margin:-6px 8px;
 }
 .hour10 {
 	-webkit-transform:rotate(300deg);
 	-moz-transform:rotate(300deg);
+	-o-transform:rotate(300deg);
 	transform:rotate(300deg);
 	margin:-7px 9px;
 }
 .hour11 {
 	-webkit-transform:rotate(330deg);
 	-moz-transform:rotate(330deg);
+	-o-transform:rotate(330deg);
 	transform:rotate(330deg);
 	margin:-10px 12px;
 }
@@ -333,8 +344,8 @@ nav:hover {
 	top:-7px;
 	z-index:90;
 }
-#robotIcon .robotAntena:nth-child(1) { left:8px; -moz-transform:rotate(150deg); -webkit-transform:rotate(150deg); }
-#robotIcon .robotAntena:nth-child(2) { right:8px; -moz-transform:rotate(30deg); -webkit-transform:rotate(30deg); }
+#robotIcon .robotAntena:nth-child(1) { left:8px; -moz-transform:rotate(150deg); -webkit-transform:rotate(150deg); -o-transform:rotate(150deg); transform:rotate(150deg); }
+#robotIcon .robotAntena:nth-child(2) { right:8px; -moz-transform:rotate(30deg); -webkit-transform:rotate(30deg); -o-transform:rotate(300deg); transform:rotate(300deg);}
 #robotIcon .robotFace {
 	background:rgba(41,41,41,0.9);
 	-moz-box-shadow:inset 1px 1px 1px rgba(255,255,255,0.5),
