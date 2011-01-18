@@ -726,6 +726,11 @@ section table th.Last-visit-date	{ min-width:115px; }
 #se, #robots, #searchPhrase, #searchWord		{ float:left; margin:10px; }
 /*@3.2.7 - Errors*/
 #errors table { margin:10px auto; }
+/*@3.2.8 - Daily Stats*/
+#daily	{ min-width:950px; }
+#dailyTotal, #dailyAvg { width:400px; margin:5px 15px; float:left; }
+#dailyTotal h3, #dailyAvg h3{ text-align:center; }
+
 /*###############
 @9.0 - Footer/Globals
 ###############*/

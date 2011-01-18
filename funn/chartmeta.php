@@ -93,4 +93,24 @@ $filesMetaC = array('cht'=>'bhs',
 				   'chdlp'=>'b',	//legend position
 				   'chds'=>'0,'.findMax($files,'Hits')
 				   );
+$dtTotalMetaC = array('chxl=0:|Monday|Wednesday|Friday|Sunday',
+					'chxp=0,0,2,4,6',
+					'chxr=0,0,7|1,0,'.findMax($dtTM,'Pages'),	//axis maximums, need to make this dynamic for number of Pages.
+					'chxs=0,676767,11.5,0,lt,676767|1,3366CC,11.5,0,l,676767',
+					'chxt=x,y',
+					'chbh=a,2,17',
+					'chs=375x300',
+					'cht=bvg',
+					'chco=3072F3,80C65A,AA0033',	//data colors
+					'chds=0,1477,0,21072,0,511',
+					'chdl=Pages|Hits|Visits',
+					'chdlp=b',
+					'chg=0,10,0,0',
+					'chma=10,10,5,25',
+					'chm=D,8BACEE,0,-1.1,3|D,83E74C,1,-1,3,1|D,F57199,2,-1,3,-1',
+					'chtt=Daily+Totals'
+					);
+$dtAverageMetaC = $dtTotalMetaC;
+$dtAverageMetaC[2] = 'chxr=0,0,7|1,0,'.findMax($dtAM,'Pages');	//axis maximums, need to make this dynamic for number of Pages.
+$dtAverageMetaC[15] = 'chtt=Daily+Averages';
 ?>

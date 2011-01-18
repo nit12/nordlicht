@@ -136,6 +136,10 @@ function sectionArray($section,$sts,$off=1){
 
 	$secHL = count($secHead);
 	$lim = 0;
+	
+	if(!$secArray):
+		return false;
+	endif;
 	foreach($secArray as $sec => $s):
 		$i = 0;
 		while($i < $secHL):
@@ -276,6 +280,37 @@ function drawTable($args){
 	echo "</table>\n";
 }
 
+/* Function dayTable()	- makes the table for the Average & Total Daily values
+ *	$section	- array section returned from the dayTotals() function
+ *	return		= HTML table of values
+ */
+function dayTable($section){
+	echo "<table>
+<tr>
+	<th>Day of the Week</th>
+	<th>Pages</th>
+	<th>Hits</th>
+	<th>Bandwidth</th>
+	<th>Visits</th>
+</tr>\n";		
+	foreach($section as $day=>$t):
+		echo "\t<tr>\n";
+		echo "\t\t<td>".$day."</td>\n";
+		foreach($t as $h=>$v):
+			$vl = "\t\t<td>";
+			if($h == 'Bandwidth'):
+				$vl .= byteSize($v);
+			else:
+				$vl .= number_format($v);
+			endif;
+			$vl .= "</td>\n";
+			echo $vl;
+		endforeach;
+		echo "\t</tr>\n";
+	endforeach;
+	echo "</table>\n";
+}
+
 
 /*findMax()		- finds the max value for a section of the stats file array
 	$section	- section of the stats file array
@@ -376,7 +411,6 @@ function chartURL($meta,$data,$metaD){
 	return $url;
 }
 
-
 /*todayStats()	- prints out table of today stats as of: 
 	$section	- takes the $month section of the stats file array
 	$meta		- metadata for the headers
@@ -423,7 +457,6 @@ function sectionNull($secArr,$secL){
 	return $secArr;
 }
 
-
 /*sumSec()		- returns the sum of all the Hits for a stats file array section
 	$section	- array section from the stats file
 	
@@ -436,7 +469,6 @@ function sumSec($section){
 	endforeach;
 	return $t;
 }
-
 
 /*sumSecType	- returns the sum of Hits for each type
 	$section 	- section of the stats file array
@@ -482,38 +514,6 @@ function osCombine($type,$hits,$total,$atom){
 	return $atom;
 }
 
-
-/*weekDay()*/
-function weekDay($section){
-	$week = array();
-	$weekT = array('Week Day'=>'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
-	$len = count($section['Date']);
-	$i = 0;
-	while($i < $len):
-		$date = $section['Date'][$i];
-		$y = substr($date,0,4);
-		$m = substr($date,4,2);
-		$d = substr($date,6,2);
-		$ts = mktime(0,0,0,$m,$d,$y);
-		$da = getdate($ts);		
-		$dw = $da['weekday'];
-		$week['weekDays'][] = $dw;
-		$i++;
-	endwhile;
-	$ns = array_merge($week,$section);
-	foreach($ns as $s=>$g):
-		$j = 0;
-		foreach($weekT as $wd):
-			while($j < $len):
-				if($g[$j] == $wd):
-					echo 'True';
-				endif;
-				$j++;
-			endwhile;
-		endforeach;
-	endforeach;
-}
-
 /*lastUpdate()	- last time the stats file was updated 
 	$date 		- the LastUpdate section of the general array
 	$ar			- return an array instead of the formated string (false by default)
@@ -545,5 +545,98 @@ function lastUpdate($section,$ar=false){
 		$u .="<p> ". number_format($numNew) ." new records since last update.</p>\n";
 		echo $u;
 	}
+/*########
+@4. Day of the Week functions
+#########*/
+/*	Function - weekDay() - turns 20101207 into day of the week 
+ *		$date	- integer in YYYYMMDD format
+ *		return	= Day of the week Monday/Tuesday....
+ */
+function weekDay2($date) {
+	$y = substr($date,0,4);
+	$m = substr($date,4,2);
+	$d = substr($date,6,2);
+	$ts = mktime(0,0,0,$m,$d,$y);
+	$da = getdate($ts);
+	$dw = $da['weekday'];
+	return $dw;
+}
+/*	Function dayTotals()	- takes the Month Section of the stats file array and gets the Average and Total values for each day of the week
+ *		$section 	- the $month section of the stats file array
+ *		return		= array of totals and averages for each weekday of the month
+ */
+function dayTotals($section){
+	$date = $section['Date'];
+	$len = count($date);
+	$j = 0;
+	$totals = array();
+	$vals = array('Pages','Hits','Bandwidth','Visits');
+	$totals['Total'] = $totals['Average'] = $dy = array('Monday'=>'','Tuesday'=>'','Wednesday'=>'','Thursday'=>'','Friday'=>'','Saturday'=>'','Sunday'=>'');
+	
+	while($j < $len):	//turns the Date section 20101207 into day of the week
+		 $section['Date'][$j] = weekDay2($date[$j]);
+		$j++;
+	endwhile;
+	$j=0;
+	while($j < $len):	//total up the days
+		$d = $section['Date'][$j];
+		$dy[$d]++;
+		foreach($vals as $s):
+			$totals['Total'][$d][$s] += $section[$s][$j];
+		endforeach;
+		$j++;
+	endwhile;
 
+	$j=0;
+	foreach($totals['Total'] as $day=>$v):	//get the averages for each day
+		foreach($v as $type=>$num):
+			$totals['Average'][$day][$type] = ($totals['Total'][$day][$type]) / $dy[$day];
+		endforeach;
+	endforeach;
+
+	return $totals;
+}
+/* Function dayChartData()	- gets the data for the dayCharts
+ * 	$section	- section from the dayTotals array $dt['Total']/$dt['Average']
+ *	return		= comma seperated string of data to give to dayChartURL
+ */	
+function dayChartData($section){
+	$dt = array();
+	foreach($section as $s=>$d):
+		foreach($d as $v=>$vl):
+			$dt[$v] .= $vl .",";
+		endforeach;
+	endforeach;
+	return $dt;
+}
+/* Function dayChartURL()	- builds the URL for the Google Chart for the Daily Charts
+ *	$data	- data returned from the dayTotals function
+ * 	$meta	- metadata array of the google chart options
+ *	return	- Google Chart URL
+ */
+function dayChartURL($data,$meta){
+	$url = 'http://chart.apis.google.com/chart';
+	$cd = "?chd=t:";
+	foreach($data as $d=>$h):
+		if($d != 'Bandwidth'):
+			$cd .= rtrim($h,',')."|";
+		endif;
+	endforeach;
+	$url .= rtrim($cd,'|');
+	foreach($meta as $v):
+		$url .= "&amp;".$v;
+	endforeach;
+	return $url;
+}
+/* Function expandDay()	- expands the day values to its own array to get the max
+ *	$section	- section returned from dayChartURL function
+ * 	return		= array formatted to find the max
+ */
+function expandDay($section){
+	$max = array();
+	foreach($section as $s=>$v):
+		$max[$s] = explode(',',$v);
+	endforeach;
+	return $max;
+}
 ?>
