@@ -6,7 +6,7 @@
 	<meta name="description" content="statistics">
 	<meta name="author" content="<?php echo $aweVerson; ?>">
 	<link rel="shortcut icon" href="/favicon.ico">
-	<link type="text/css" rel="stylesheet" href="funn/css/ruthless.min.css"/>
+	<link type="text/css" rel="stylesheet" href="funn/css/ruthless.css"/>
 	<script src="funn/js/modernizr-1.6.min.js"></script>
 </head>
 
