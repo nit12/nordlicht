@@ -6,12 +6,16 @@ $time		= sectionArray('TIME',$sts);
 $month		= sectionArray('DAY',$sts);
 $IPs		= sectionArray('VISITOR',$sts,3);
 $domain		= sectionArray('DOMAIN',$sts,2);
-//arsort($domain['Hits']);
-
+$dt			= dayTotals($month);
+$dtT 		= dayChartData($dt['Total']);	//day total
+$dtA 		= dayChartData($dt['Average']);	//day average
+$dtTM 		= expandDay($dtT);				//day Total max
+$dtAM 		= expandDay($dtA);				//day Average max
+/*Data for the graphs*/
 $hourData = chartData($time,$timeMetaT);
 $monthData = chartData($month,$monthMetaT);
-//$domainData = chartData($domain,$domainMetaT,10);
 $domainData2 = ccMapData($domain,$domainMetaT,15,$cc);
+
 
 /*Operating Systems*/
 $os				= sectionArray('OS',$sts);
@@ -54,7 +58,6 @@ $searchPhrase	= sectionArray('SEARCHWORDS',$sts,2);
 $searchWord		= sectionArray('KEYWORDS',$sts,2);
 $searchRef 		= sectionArray('SEREFERRALS',$sts);
 $pageRef 		= sectionArray('PAGEREFS',$sts,2);
-
 
 /*content*/
 $files = sectionArray('FILETYPES',$sts);
