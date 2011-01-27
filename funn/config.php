@@ -14,7 +14,7 @@ if($dayR==''):
 endif;
 
 /*nordlich version number*/
-$nordlich  = '0.2';
+$nordlich  = '0.3.1';
 
 /*Abslolute server path to AWStats data files*/
 $stsP = '/var/lib/awstats/';
