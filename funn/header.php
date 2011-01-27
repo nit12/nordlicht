@@ -23,7 +23,7 @@
     <ul id="nav">
         <li><a href="#today">Today</a>
 			<span id="todayIcon" class="navIcon">
-				<span class="todayDay"><?php echo date('D');?></span>
+				<span><?php echo date('D');?></span>
 				<?php echo date('d'); ?>
 			</span> <!-- closes todayIcon span -->
 		</li>
@@ -73,10 +73,10 @@
 		</li>
         <li><a href="#content">File &amp; Pages</a>
 			<span id="fileIcon" class="navIcon">
-				<span class="fileTab"></span>
+				<span></span>
 			</span> <!-- closes fileIcon span -->
 		</li>
-        <li><a href="#searchReffs">Robots &amp; Refferals</a>
+        <li><a href="#reffs">Robots &amp; Refferals</a>
 			<div id="robotIcon" class="navIcon">
 				<span class="robotAntena"></span>
 				<span class="robotAntena"></span>
@@ -93,6 +93,11 @@
 					</table>
 				</div> <!-- closes robotFace span-->
 			</div> <!-- closes robotIcon span-->
+		</li>
+        <li><a href="#searches">Searches</a>
+			<span id="searchIcon" class="navIcon">
+				<span></span>
+			</span> <!-- closes searchIcon span -->
 		</li>
 		<li><a href="#errors">Errors</a>
 			<span id="errorIcon" class="navIcon">
