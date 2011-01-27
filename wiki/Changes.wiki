@@ -1,0 +1,24 @@
+#labels Featured
+=Changelog=
+==nordlicht v0.3.1.1==
+===Jan 27, 2011===
+  * added magnifing glass icon
+  * seperated the search and refferals sections
+  * changed the sorting on Refferals to be by Page
+  * cleaned up the CSS alittle
+
+==nordlicht v0.2.1==
+===Jan 13, 2011===
+  * added licenses and readmes for jQuery plugins
+  * updated the file type icons
+  * updated the "other" browser icon
+
+==nordlicht v0.2==
+===Jan 08, 2011===
+  * Made all tables made with the drawTable function that takes an associative array of values
+  * Removed old code from funnns.php
+  * Updated footer to include correct links
+
+==nordlicht v0.1==
+===Jan 01, 2011===
+  * Inital release
