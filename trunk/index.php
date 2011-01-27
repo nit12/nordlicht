@@ -18,12 +18,12 @@
 			<img src="<?php echo dayChartURL($dtT,$dtTotalMetaC);?>" title="Daily Totals chart" />
 			<h3>Daily Totals</h3>
 			<?php dayTable($dt['Total']);?>
-		</div>
+		</div> <!-- closes dailyTotal div-->
 		<div id="dailyAvg">
 			<img src="<?php echo dayChartURL($dtA,$dtAverageMetaC);?>" title="Daily Averages chart" />
 			<h3>Daily Averages</h3>
 			<?php dayTable($dt['Average']);?>
-		</div>
+		</div> <!-- closes dailyAvg div-->
 		<br class="clear" />
 	</section> <!-- closes daily section -->
 	 
@@ -47,8 +47,8 @@
 				endif; ?>
 		<br class="clear"/>
 		</div> <!-- closes tableHold div -->
-		
 	</section> <!-- closes month section --> 
+	
 	<section id="browserOS" class="statsSection"> 
 		<div id="browser" class="tableHold"> 
 			<h2>Top Browsers</h2> 
@@ -61,7 +61,7 @@
 			<img src="<?php echo chartURL($osMeta,'','');?>" alt="browser breakdown pie chart" />
 			<?php drawTable($osArgs); ?>
 			<br class="clear" />
-		</div> <!-- closes broswe div --> 
+		</div> <!-- closes os div --> 
 	</section> <!-- closes browseOS section -->
 	
 	<section id="domainIP" class="statsSection"> 
@@ -80,20 +80,21 @@
 	</section> <!-- closes domainIP section -->
 	
 	<section id="content" class="statsSection">
-		<h2>Files &amp; Pages</h2>
-		<aside id="files">
-			<h2>File Types</h2>
-			<?php drawTable($fileArgs); ?>
-		</aside> <!-- closes files div --> 
-		<aside id="pages"> 
-			<h2>Top 15 Pages</h2> 
-			<?php drawTable($pagesArgs); ?>
-		</aside> <!-- closes pages div -->
-		<br class="clear" />
+		<div class="tableHold">
+			<aside id="files">
+				<h2>File Types</h2>
+				<?php drawTable($fileArgs); ?>
+			</aside>
+			<aside id="pages">
+				<h2>Top 15 Pages</h2> 
+				<?php drawTable($pagesArgs); ?>
+			</aside>
+			<br class="clear" />
+		</div> <!-- closes tableHold div -->
 	</section> <!-- closes content section -->
 	
-	<section id="searchReffs" class="statsSection"> 
-		<h2>Search Engines &amp; Refferals</h2>
+	<section id="reffs" class="statsSection"> 
+		<h2>Robots &amp; Refferals</h2>
 			<?php drawTable($searchArgs); ?>
 		<br class="clear" />
 		<div class="tableHold">
@@ -111,6 +112,10 @@
 			</aside>
 			<br class="clear" />
 		</div> <!-- closes tableHold div -->
+	</section> <!-- closes reffs section -->
+	
+	<section id="searches" class="statsSection">
+		<h2>Searches</h2>
 		<div class="tableHold">
 			<aside id="searchPhrase">
 				<h2>Top 10 Search Phrases</h2>
@@ -130,7 +135,7 @@
 			</aside> <!-- closes searchPhrase div --> 
 			<br class="clear"/>
 		</div> <!-- closes tableHold div -->
-	</section> <!-- closes robots section -->
+	</section> <!-- closes searches section -->
 	
 	<section id="errors" class="statsSection">
 		<h2>Errors</h2>
