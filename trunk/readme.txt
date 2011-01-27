@@ -17,7 +17,7 @@ Instlation:
 	4. Enjoy
 
 =Resources:==
-nordlicht comes with the following resources that have been made avaliable under the following licenses
+nordlicht comes with the following resources that have been made available under the following licenses
 
 ==jQuery Plugins:==
   * Colorbox 1.3.15 - under the MIT license
@@ -30,6 +30,12 @@ nordlicht comes with the following resources that have been made avaliable under
   * FamFamFam Flag icons - http://www.famfamfam.com/lab/icons/flags/
 
 =Changelog=
+==nordlicht v0.3.1.1==
+===Jan 27, 2011===
+  * added magnifing glass icon
+  * seperated the search and refferals sections
+  * changed the sorting on Refferals to be by Page
+  * cleaned up the CSS alittle
 
 ==nordlicht v0.2.1==
 ===Jan 13, 2011===

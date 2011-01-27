@@ -64,7 +64,7 @@ $robotArgs = array('section'=>$robot,
 //Search Refferals
 $searchArgs = array('section'=>$pageRef,
 					'meta'=>$pageRefMetaT,
-					'sort'=>'Hits',
+					'sort'=>'Pages',
 					'limit'=>15);
 //Refferals
 $refArgs 	= array('section'=>$searchRef,
