@@ -8,13 +8,14 @@
 */
 $statsURL = $_GET['stats'];
 $dayR = $_GET['time'];
+$tday = date('mY');
 //if the time is not specified, then use the current month and year
 if($dayR==''):
 	$dayR = date('mY');
 endif;
 
 /*nordlich version number*/
-$nordlich  = '0.3.1';
+$nordlich  = '0.3.2';
 
 /*Abslolute server path to AWStats data files*/
 $stsP = '/var/lib/awstats/';
@@ -23,11 +24,12 @@ $stsF = $stsP.'awstats'.$dayR.'.'.$statsURL.'.txt';
 //sample AW stats output file
 if(file_exists($stsF)):
 	$sts = file($stsF);
-	require('funn/funnns.php');
-	require('funn/metadata.php');
-	require('funn/data.php');
-	require('funn/chartmeta.php');
-	require('tableArgs.php');
+	require_once('funn/funnns.php');
+	require_once('funn/metadata.php');
+	require_once('funn/data.php');
+	require_once('funn/chartmeta.php');
+	require_once('tableArgs.php');
+
 	$stsList = fileList($stsP);
 else:
 	$sts = false;
