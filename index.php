@@ -10,6 +10,7 @@
 				echo "<p>".number_format($general['TotalUnique'][0]). " total uniques this month</p>\n"; ?>
 		</div>
 		<br class="clear"/> 
+		<?php //drawTable($monthYearArgs); ?>
 	</section> <!-- closes today section --> 
 	
 	<section id="daily" class="statsSection">
