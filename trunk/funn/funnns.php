@@ -292,7 +292,8 @@ function dayTable($section){
 	<th>Hits</th>
 	<th>Bandwidth</th>
 	<th>Visits</th>
-</tr>\n";		
+</tr>\n";
+//print_r($section);
 	foreach($section as $day=>$t):
 		echo "\t<tr>\n";
 		echo "\t\t<td>".$day."</td>\n";
@@ -589,9 +590,20 @@ function dayTotals($section){
 
 	$j=0;
 	foreach($totals['Total'] as $day=>$v):	//get the averages for each day
-		foreach($v as $type=>$num):
-			$totals['Average'][$day][$type] = ($totals['Total'][$day][$type]) / $dy[$day];
-		endforeach;
+		if(!$v):
+			$totals['Total'][$day]['Pages'] = 0;
+			$totals['Total'][$day]['Hits'] = 0;
+			$totals['Total'][$day]['Bandwidth'] = 0;
+			$totals['Total'][$day]['Visits'] = 0;
+			$totals['Average'][$day]['Pages'] = 0;
+			$totals['Average'][$day]['Hits'] = 0;
+			$totals['Average'][$day]['Bandwidth'] = 0;
+			$totals['Average'][$day]['Visits'] = 0;
+		else:
+			foreach($v as $type=>$num):
+				$totals['Average'][$day][$type] = ($totals['Total'][$day][$type]) / $dy[$day];
+			endforeach;
+		endif;
 	endforeach;
 
 	return $totals;
@@ -603,9 +615,11 @@ function dayTotals($section){
 function dayChartData($section){
 	$dt = array();
 	foreach($section as $s=>$d):
-		foreach($d as $v=>$vl):
-			$dt[$v] .= $vl .",";
-		endforeach;
+		if($d):
+			foreach($d as $v=>$vl):
+				$dt[$v] .= $vl .",";
+			endforeach;
+		endif;
 	endforeach;
 	return $dt;
 }
