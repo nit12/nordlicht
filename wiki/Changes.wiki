@@ -1,5 +1,10 @@
 #labels Featured
 =Changelog=
+==nordlicht v0.4==
+===Feb. 05,2011===
+  * added the Year to Date info
+  * fixed bug 10 - added padding to charts
+  * started bug 8 - added a splash page, it looks like crap
 ==nordlicht v0.3.1.1==
 ===Jan 27, 2011===
   * added magnifing glass icon
