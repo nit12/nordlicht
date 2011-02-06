@@ -6,17 +6,16 @@ Using nordlicht couldn't be easier.  Simply download the [http://code.google.com
 
 Setup might require a few changes, but those are simple.
 
----
+----
 The variables you may need to change are:
 
-The absolute server path to your awstats directory
-`$stsP = '/var/lib/awstats/';`
+  * The absolute server path to your awstats directory
+   `$stsP = '/var/lib/awstats/';`
+  * The file name convention awstats uses for it's data files
+    `$stsF = $stsP.'awstats'.$dayR.'.'.$statsURL.'.txt';`
 
-The file name convention awstats uses for it's data files
-`$stsF = $stsP.'awstats'.$dayR.'.'.$statsURL.'.txt';`
+  * Year to date functionality - on by default
+    `$year2Date = true;`
 
-Year to date functionality - on by default
-`$year2Date = true;`
-
-Directory where you want to keep the year to date files
-`$y2dDir = '/home/alphavega/demo/ph/nordlicht/funn/y2d/'.date('Y');`
+  * Directory where you want to keep the year to date files
+   `$y2dDir = '/home/alphavega/demo/ph/nordlicht/funn/y2d/'.date('Y');`
