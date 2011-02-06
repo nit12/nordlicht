@@ -11,8 +11,8 @@ So, I went about redesigning the front end, and this is what I came up with.
 
 With lots, and lots of PHP.
 
-Well, that's the unfortunate outcome of a single person working on this in their spare time.  There's lots that is redundant, and duplicated, and depreciated in the code that's up there right now. 
-
-But I know all about that, so fear not, it's all in the works to be made better, you can follow the release cycle, and bug fixes, and updates on the nordlicht project page on Google Code.
+Well, that's the unfortunate outcome of a single person working on this in their spare time.  There's lots that is duplicated code.
 
 The back end is all PHP, but still uses AWStats to analyze the Apache server logs, but that's all that AWStats does, create the output log file, nordlicht goes through that log file and puts it in a nice front end design.
+
+The graphs are made using the excellent Google Charting API.  However there are limits.  I decided that for the first version I would go with the easier to use, and better on the system, static charts.  Perhaps in a future version I might change to the more user-friendly interactive charts.
