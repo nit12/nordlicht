@@ -1,7 +1,16 @@
 #labels Featured
 =Changelog=
+==nordlicht v0.4.1==
+===Feb. 06, 2011===
+  * finished bug 8 - made the splash page fucking ace
+  * added custom theme to date picker and MSDropDown
+  * removed lots of CSS from MSDropDown
+  * limited date picker to 2001 till current day
+  * cleaned up the HTML output of drawTable()
+  * centered the Y2D table
+  * added a favicon - looks like crap but better then nothing right now
 ==nordlicht v0.4==
-===Feb. 05,2011===
+===Feb. 05, 2011===
   * added the Year to Date info
   * fixed bug 10 - added padding to charts
   * fixed bug 2
