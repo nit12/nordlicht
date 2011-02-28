@@ -4,9 +4,9 @@
 ===Feb. 27, 2011===
   * Fixed bug 3 - Full list functionality now avaliable on:
     * IP
-	* Domain
-	* File Types
-	* Page Referals
+    * Domain
+    * File Types
+    * Page Referals
   * Added each individual jQuery plugin file, compressed, and uncompressed
   * Made ultra.js just include my javascript
   * Created venona.js to include all the minified jQuery plugins, and venona.min.js to include minified plugins, with no comments
